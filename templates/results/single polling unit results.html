@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results | {{ polling_state | title }} - {{ sample_polling_unit.polling_unit_name | title }}</title>
+    <link href="{% static 'results/css/bootstrap.min.css'%}" type="text/css" rel="stylesheet" />
+    <link href="{% static 'results/css/results.css'%}" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="individual-result-page">
+            <div class="individual-result-page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center mb-2 p-1">
+                            <h1 class="polling-unit-title">Results for {{ sample_polling_unit.polling_unit_name | title }}</h1>
+                            {% if sample_polling_unit_results.count %}
+                                <h5 class="polling-unit-title text-info">Total results for {{ sample_polling_unit.polling_unit_name | title }}: {{ sample_polling_unit_results.count }}</h5>
+                            {% endif %}
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Result ID</th>
+                                        <th>Party</th>
+                                        <th>Party Score</th>
+                                        <th>Entered By</th>
+                                        <th>Date Entered</th>
+                                        <th>IP Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    {% for poll_result in sample_polling_unit_results %}
+                                    <tr id="wished-book-to-remove-{{ wished_book.book.pk }}"
+                                        old-value="{{ wished_book.quantity }}">
+                                        {% if poll_result.result_id %}
+                                            <td>{{ poll_result.result_id }}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}
+
+                                        {% if poll_result.party_abbreviation %}
+                                            <td>{{ poll_result.party_abbreviation }}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}
+
+                                        {% if poll_result.entered_by_user %}
+                                            <td>{{ poll_result.party_score }}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}          
+                                        
+                                        {% if poll_result.entered_by_user %}
+                                            <td>{{ poll_result.entered_by_user }}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}     
+
+                                        {% if poll_result.entered_by_user %}
+                                            <td>{{ poll_result.date_entered }}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}
+
+                                        {% if poll_result.entered_by_user %}
+                                            <td>{{ poll_result.user_ip_address }}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}                                        
+                                    </tr>
+                                    {% empty %}
+                                    <div class="container-fluid">
+                                        <div class="row justify-content-center">
+                                            <h6 class="m-6 p-6 text-center">
+                                                There are no results for votes in this polling unit
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

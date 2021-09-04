@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results | {{ polling_state | title }} - {{ sample_lga_name | title }}</title>
+    <link href="{% static 'results/css/bootstrap.min.css'%}" type="text/css" rel="stylesheet" />
+    <link href="{% static 'results/css/results.css'%}" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="individual-result-page">
+            <div class="individual-result-page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center mb-2 p-1">
+                            <h1 class="polling-unit-title">Polling Units Under {{ sample_lga_name | title }}</h1>
+                            {% if polling_units_of_sample_lga.count %}
+                                <h5 class="polling-unit-title text-info">Total polling units for {{ sample_lga_name | title }}: {{ polling_units_of_sample_lga.count }}</h5>
+                            {% endif %}
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Unit ID</th>
+                                        <th>Name</th>
+                                        <th>Number</th>
+                                        <th>Entered By</th>
+                                        <th>Date Entered</th>
+                                        <th>IP Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    {% for polling_unit in polling_units_of_sample_lga %}
+                                    <tr>
+                                        {% if polling_unit.polling_unit_id %}
+                                            <td>{{ polling_unit.uniqueid }}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}
+
+                                        {% if polling_unit.polling_unit_name %}
+                                            <td>{{ polling_unit.polling_unit_name | title}}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}
+                                        
+                                        {% if polling_unit.polling_unit_number %}
+                                            <td>{{ polling_unit.polling_unit_number }}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}
+                                        
+                                        {% if polling_unit.entered_by_user %}
+                                            <td>{{ polling_unit.entered_by_user | title}}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}                                                                                
+                                        
+                                        {% if polling_unit.date_entered %}
+                                            <td>{{ polling_unit.date_entered }}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}
+
+                                        {% if polling_unit.user_ip_address %}
+                                            <td>{{ polling_unit.user_ip_address }}</td>
+                                        {% else %}
+                                            <td>N/A</td>
+                                        {% endif %}
+                                        </tr>
+                                        {% empty %}
+                                        <div class="container-fluid">
+                                            <div class="row justify-content-center">
+                                                <h6 class="m-6 p-6 text-center">
+                                                    There are no results for votes in this polling unit
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <h2 class="text-primary">
+                The sum total of all results from polling units from this LGA: {{ summed_total_of_results }}
+            </h2>
+        </div>
+    </div>
+</body>
+
+</html>

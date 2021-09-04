@@ -1,0 +1,92 @@
+body {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.individual-result-page {
+  position: relative;
+  padding: 30px 0;
+}
+
+.individual-result-page .individual-result-page-inner {
+  padding: 20px;
+  background: #ffffff;
+}
+
+.individual-result-page .table {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.individual-result-page .table .thead-dark tr th {
+  font-family: "Source Code Pro", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #353535;
+  text-align: center;
+  background: transparent;
+  border-color: #dddddd;
+  border-bottom: none;
+  vertical-align: middle;
+}
+
+.individual-result-page .table td {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.individual-result-page .table .img {
+  display: flex;
+  align-items: center;
+}
+
+.individual-result-page .table .img img {
+  max-width: 60px;
+  max-height: 60px;
+  margin-right: 15px;
+}
+
+.individual-result-page .table .img p {
+  display: inline-block;
+  text-align: left;
+  margin: 0;
+}
+
+.individual-result-page .table .qty {
+  display: inline-block;
+  width: 100px;
+  font-size: 0;
+}
+
+.individual-result-page .table button {
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  text-align: center;
+  color: #ffffff;
+  background: #ff6f61;
+  border: none;
+  border-radius: 4px;
+}
+
+.individual-result-page .table button.btn-minus {
+  border-radius: 4px 0 0 4px;
+}
+
+.individual-result-page .table button.btn-plus {
+  border-radius: 0 4px 4px 0;
+}
+
+.individual-result-page .table button.btn-cart {
+  width: auto;
+}
+
+.individual-result-page .table input {
+  width: 40px;
+  height: 30px;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+  background: #000000;
+  border: none;
+}
